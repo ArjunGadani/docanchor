@@ -1,0 +1,22 @@
+# Render Blueprint — deploy DocsRAG as a single Docker web service.
+# Render → New → Blueprint → connect this repo. You'll be prompted for the
+# secret values (sync: false), which are never stored in the repo.
+services:
+  - type: web
+    name: docanchor
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_KEY        # service-role key (server-side only)
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      # Optional: set to the Supabase DIRECT connection URI to auto-apply
+      # db/schema.sql on boot (one-shot). Omit if you ran schema.sql manually.
+      - key: DATABASE_URL
+        sync: false

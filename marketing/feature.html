@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: Inter, system-ui, sans-serif; background: #050507; }
+  #card { position: relative; display: inline-block; padding: 56px 56px 48px; background: #07070b; overflow: hidden; }
+  .bg, .grid, .grain { position: absolute; inset: 0; }
+  .bg { background-image:
+      radial-gradient(50% 60% at 50% -10%, rgba(99,102,241,.30), transparent 60%),
+      radial-gradient(40% 50% at 100% 100%, rgba(129,140,248,.12), transparent 60%); }
+  .grid { background-image:
+      linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+    background-size: 42px 42px;
+    -webkit-mask-image: radial-gradient(circle at 50% 40%, #000, transparent 75%);
+            mask-image: radial-gradient(circle at 50% 40%, #000, transparent 75%); }
+  .grain { opacity: .05; mix-blend-mode: overlay; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .inner { position: relative; }
+  .window { border-radius: 14px; overflow: hidden; background: #0d0d12; border: 1px solid rgba(255,255,255,.09);
+    box-shadow: 0 40px 100px -24px rgba(0,0,0,.8), 0 20px 70px -16px rgba(99,102,241,.4), 0 0 0 1px rgba(255,255,255,.04); }
+  .chrome { height: 36px; display: flex; align-items: center; gap: 7px; padding: 0 14px; background: #14141b; border-bottom: 1px solid rgba(255,255,255,.06); }
+  .chrome .d { width: 10px; height: 10px; border-radius: 50%; }
+  .url { margin: 0 auto; font-size: 11.5px; color: #8b8b96; background: #0c0c11; border: 1px solid rgba(255,255,255,.05); padding: 4px 16px; border-radius: 7px; }
+  .window img { display: block; width: 100%; }
+  .cap { margin-top: 26px; display: flex; align-items: baseline; gap: 12px; max-width: 100%; }
+  .cap .dot { width: 7px; height: 7px; border-radius: 50%; background: #6366f1; transform: translateY(-3px); flex-shrink: 0; box-shadow: 0 0 0 4px rgba(99,102,241,.18); }
+  .cap b { font-size: 22px; font-weight: 700; color: #ededf2; letter-spacing: -.01em; }
+  .cap span { font-size: 16px; color: #9494a3; }
+</style>
+</head>
+<body>
+  <div id="card">
+    <div class="bg"></div><div class="grid"></div><div class="grain"></div>
+    <div class="inner">
+      <div class="window" id="window">
+        <div class="chrome">
+          <span class="d" style="background:#ff5f57"></span>
+          <span class="d" style="background:#febc2e"></span>
+          <span class="d" style="background:#28c840"></span>
+          <span class="url">docanchor.onrender.com</span>
+        </div>
+        <img id="img" alt="DocAnchor feature" />
+      </div>
+      <div class="cap"><span class="dot"></span><div><b id="title"></b> &nbsp;<span id="sub"></span></div></div>
+    </div>
+  </div>
+  <script>
+    const q = new URLSearchParams(location.search);
+    document.getElementById("img").src = "../docs/assets/raw/" + q.get("img");
+    document.getElementById("title").textContent = q.get("title") || "";
+    document.getElementById("sub").textContent = q.get("sub") || "";
+    document.getElementById("window").style.width = (q.get("w") || "1000") + "px";
+  </script>
+</body>
+</html>

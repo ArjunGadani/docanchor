@@ -1,0 +1,27 @@
+# Keep the build context small and never ship secrets.
+.env
+*.env
+!.env.example
+
+.git
+.gitignore
+docs/
+
+# Python
+**/__pycache__/
+**/*.pyc
+.venv/
+venv/
+.pytest_cache/
+
+# Node (rebuilt inside the image)
+**/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Models cache (baked fresh in the image build)
+models/
+.fastembed_cache/
+.cache/
+
+.DS_Store

@@ -1,0 +1,27 @@
+# Secrets — NEVER commit real env files
+.env
+*.env
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+
+# Node / frontend
+node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Model / HF cache (model is baked into the Docker image instead)
+.fastembed_cache/
+.cache/
+models/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/

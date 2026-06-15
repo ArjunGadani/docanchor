@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: Inter, system-ui, sans-serif; }
+
+  #poster {
+    position: relative; width: 1600px; height: 1000px; overflow: hidden;
+    background: #07070b; color: #e9e9f0;
+  }
+  .bg, .grid, .grain { position: absolute; inset: 0; }
+  .bg {
+    background-image:
+      radial-gradient(55% 45% at 72% -8%, rgba(99,102,241,.34), transparent 60%),
+      radial-gradient(40% 40% at 100% 8%, rgba(129,140,248,.16), transparent 60%),
+      radial-gradient(45% 45% at -5% 100%, rgba(99,102,241,.12), transparent 60%);
+  }
+  .grid {
+    background-image:
+      linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+    background-size: 46px 46px;
+    -webkit-mask-image: radial-gradient(circle at 60% 35%, #000 0%, transparent 72%);
+            mask-image: radial-gradient(circle at 60% 35%, #000 0%, transparent 72%);
+  }
+  .grain {
+    opacity: .05; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .content { position: relative; height: 100%; padding: 60px 64px; display: flex; flex-direction: column; }
+
+  header { display: flex; align-items: center; justify-content: space-between; }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .mark {
+    width: 38px; height: 38px; border-radius: 11px; display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, #818cf8, #6366f1); box-shadow: 0 8px 24px -6px rgba(99,102,241,.7);
+  }
+  .brand b { font-size: 20px; font-weight: 700; letter-spacing: -.01em; }
+  .live {
+    display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: #b9b9c6;
+    background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.09); padding: 8px 14px; border-radius: 999px;
+  }
+  .live .pulse { width: 8px; height: 8px; border-radius: 50%; background: #34d399; box-shadow: 0 0 0 4px rgba(52,211,153,.18); }
+
+  .hero { flex: 1; display: flex; align-items: center; gap: 32px; }
+  .left { width: 470px; flex-shrink: 0; }
+  .eyebrow { font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #a5b4fc; margin-bottom: 22px; }
+  h1 { font-size: 62px; line-height: 1.04; font-weight: 800; letter-spacing: -.025em; }
+  h1 .grad { background: linear-gradient(100deg, #c7d2fe, #818cf8 60%, #6366f1); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .sub { margin-top: 22px; font-size: 19px; line-height: 1.55; color: #a8a8b6; max-width: 480px; }
+
+  .callouts { margin-top: 34px; display: flex; flex-direction: column; gap: 14px; }
+  .callout { display: flex; align-items: center; gap: 14px; }
+  .ic {
+    width: 38px; height: 38px; border-radius: 10px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+    background: rgba(99,102,241,.13); border: 1px solid rgba(129,140,248,.28); color: #a5b4fc;
+  }
+  .ic .cite { font-size: 14px; font-weight: 700; color: #c7d2fe; }
+  .callout .t { font-size: 16px; font-weight: 600; color: #e9e9f0; }
+  .callout .d { font-size: 13.5px; color: #8f8fa0; margin-top: 1px; }
+
+  .right { flex: 1; display: flex; justify-content: center; align-items: center; perspective: 2200px; }
+  .window {
+    width: 1010px; border-radius: 16px; overflow: hidden; background: #0d0d12;
+    border: 1px solid rgba(255,255,255,.09);
+    transform: rotateX(2deg) rotateY(-6deg) rotate(.3deg);
+    box-shadow:
+      0 50px 130px -24px rgba(0,0,0,.85),
+      0 30px 90px -20px rgba(99,102,241,.45),
+      0 0 0 1px rgba(255,255,255,.04);
+  }
+  .chrome { height: 40px; display: flex; align-items: center; gap: 8px; padding: 0 16px; background: #14141b; border-bottom: 1px solid rgba(255,255,255,.06); }
+  .chrome .d { width: 11px; height: 11px; border-radius: 50%; }
+  .url { margin: 0 auto; font-size: 12.5px; color: #8b8b96; background: #0c0c11; border: 1px solid rgba(255,255,255,.05); padding: 5px 18px; border-radius: 8px; }
+  .window img { display: block; width: 100%; }
+  .glow { position: absolute; width: 700px; height: 380px; background: radial-gradient(closest-side, rgba(99,102,241,.5), transparent); filter: blur(40px); right: 40px; top: 320px; z-index: 0; }
+</style>
+</head>
+<body>
+  <div id="poster">
+    <div class="bg"></div>
+    <div class="grid"></div>
+    <div class="glow"></div>
+    <div class="grain"></div>
+    <div class="content">
+      <header>
+        <div class="brand">
+          <span class="mark">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="3"/><line x1="12" y1="22" x2="12" y2="8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/></svg>
+          </span>
+          <b>DocAnchor</b>
+        </div>
+        <span class="live"><span class="pulse"></span>Live · docanchor.onrender.com</span>
+      </header>
+
+      <div class="hero">
+        <div class="left">
+          <div class="eyebrow">RAG · Document assistant</div>
+          <h1>Ask your documents.<br><span class="grad">Get answers with receipts.</span></h1>
+          <p class="sub">A grounded assistant that answers only from your documents — every claim cited to its source, nothing invented.</p>
+          <div class="callouts">
+            <div class="callout">
+              <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="3"/><line x1="12" y1="22" x2="12" y2="8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/></svg></span>
+              <div><div class="t">Strictly grounded</div><div class="d">Never invents — says “I couldn’t find that” instead of guessing</div></div>
+            </div>
+            <div class="callout">
+              <span class="ic"><span class="cite">[1]</span></span>
+              <div><div class="t">Inline citations</div><div class="d">Every claim links to the exact source passage</div></div>
+            </div>
+            <div class="callout">
+              <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>
+              <div><div class="t">Any documents</div><div class="d">PDF, DOCX, TXT, MD — or paste a URL</div></div>
+            </div>
+            <div class="callout">
+              <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+              <div><div class="t">Conversational</div><div class="d">Greetings, follow-ups, and honest grey-area hedging</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="right">
+          <div class="window">
+            <div class="chrome">
+              <span class="d" style="background:#ff5f57"></span>
+              <span class="d" style="background:#febc2e"></span>
+              <span class="d" style="background:#28c840"></span>
+              <span class="url">docanchor.onrender.com</span>
+            </div>
+            <img src="../docs/assets/raw/hero_ui.png" alt="DocAnchor UI" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
